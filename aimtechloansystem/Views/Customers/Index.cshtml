@@ -1,0 +1,123 @@
+﻿@model IEnumerable<aimtechloansystem.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-danger mb-3">
+    <div class="container-fluid">
+        <a asp-controller="Customers" asp-action="CustomerList" class="navbar-brand mr-3">AIM TECH LOAN</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link " asp-controller="Customers" asp-action="CustomerList">Home</a>
+                <a class="nav-item nav-link active" asp-controller="Customers" asp-action="Index">CUSTOMERS</a>
+                <a class="nav-item nav-link" asp-controller="EMI" asp-action="EndOfmonths">REPORTS</a>
+                <a class="nav-item nav-link" asp-controller="Customers" asp-action="PaidCustomerList">HISTORY</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" asp-controller="Account" asp-action="Login">Admin</a>
+                <a class="nav-item nav-link" asp-controller="Account" asp-action="Register">Logout</a>
+            </div>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <form method="post">
+        <table border="0" width="100%">
+            <tr>
+                <td width="10%"><h5>Customer List</h5></td>
+                <td width="40%" align="left"><a href="javascript:window.print()" id="print"><i class="fas fa-print"></i></a></td>
+                <td width="25%" align="right"><input type="text" class="form-control" name="search" placeholder="Search" /></td>
+                <td width="5%" align="right">
+                    <input type="submit" asp-action="Index" class="btn btn-outline-success" value="search" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+    @ViewData["Message"]
+    <table class="table table-bordered table-sm mb-3  index-table table-hover"  id="example">
+        <thead style="background-color:#b0dfff">
+            <tr>
+                
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Next Paid</th>
+                <th>Amount</th>
+                <th>Percent</th>
+                <th>Balance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @if (item.Status == "Paid" || item.Status == "Settel")
+                {
+            <tr class="bg-danger text-white">
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Convert.ToDateTime(item.NextPaid).ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Percent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanBalance)
+                </td>
+
+                <td>
+                    <a asp-controller="EMI" asp-action="Create" asp-route-id="@item.ID" class="btn-sm btn-success">AddEMI</a> &nbsp;
+                    <a asp-action="EMIDetails" asp-route-id="@item.ID" class="btn-sm btn-secondary">Details</a>
+
+                </td>
+            </tr>
+                }
+                else
+                {
+            <tr style="background-color:#73c7ff">
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Convert.ToDateTime(item.NextPaid).ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Percent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanBalance)
+                </td>
+
+                <td>
+                    <a asp-controller="EMI" asp-action="Create" asp-route-id="@item.ID" class="btn-sm btn-success">AddEMI</a> &nbsp;
+                    <a asp-action="EMIDetails" asp-route-id="@item.ID" class="btn-sm btn-secondary">Details</a>
+
+                </td>
+            </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+

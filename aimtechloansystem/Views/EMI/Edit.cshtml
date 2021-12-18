@@ -1,0 +1,97 @@
+﻿@model aimtechloansystem.Models.EMI
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<nav class="navbar navbar-expand-md fixed-top" style="background-color:#f2131f">
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a asp-action="CustomerList" asp-controller="Customers">
+                    <img src="~/images/aimtechlogo.jpg" sizes="50px" alt="logo" width="50px" height="35px" />
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="CustomerList" asp-controller="Customers">
+                    <h5 style="color:white;">AIM TECH LOAN</h5>
+                </a>
+            </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="Index" style="color:white">CUSTOMERS</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="EMI" asp-action="EndOfmonths" style="color:white">REPORTS</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="PaidCustomerList" style="color:white">HISTORY</a> </li>
+
+        </ul>
+    </div>
+    <div class="form-inline">
+        @await Html.PartialAsync("_loginPartial")
+    </div>
+</nav>
+<h4>@ViewData["CustomerName"] Edit EMI</h4>
+
+<form asp-action="Edit">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td style="display:none" colspan="4">
+                <label asp-for="CustomerID" class="control-label"></label>
+                <input asp-for="CustomerID" id="EMIAmount" class="form-control" />
+                <span asp-validation-for="CustomerID" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Mudal" class="control-label"></label>
+            </td>
+            <td>
+                <input asp-for="Mudal" id="EMIAmount" class="form-control" />
+                <span asp-validation-for="Mudal" class="text-danger"></span>
+            </td>
+            <td>
+                <label asp-for="Vyaj" class="control-label"></label>
+            </td>
+            <td>
+                <input asp-for="Vyaj" id="EMIAmount" class="form-control" />
+                <span asp-validation-for="Vyaj" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="EMIAmount" class="control-label"></label>
+            </td>
+            <td>
+                <input asp-for="EMIAmount" id="EMIAmount" class="form-control" />
+                <span asp-validation-for="EMIAmount" class="text-danger"></span>
+            </td>
+            <td>
+                <label asp-for="EMIDate" class="control-label"></label>
+            </td>
+            <td>
+                <input asp-for="EMIDate" id="EMIAmount" class="form-control" />
+                <span asp-validation-for="EMIDate" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="LateFee" class="control-label"></label>
+            </td>
+            <td>
+                <input asp-for="LateFee" class="form-control" />
+                <span asp-validation-for="LateFee" class="text-danger"></span>
+            </td>
+            <td></td>
+            <td>
+                <input type="submit" value="Update EMI" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<div>
+    <a asp-controller="Customers" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

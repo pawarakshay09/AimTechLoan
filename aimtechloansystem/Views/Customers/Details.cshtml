@@ -1,0 +1,90 @@
+﻿@model aimtechloansystem.Models.Customer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<nav class="navbar navbar-expand-md fixed-top" style="background-color:#f2131f">
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a asp-action="CustomerList" asp-controller="Customers">
+                    <img src="~/images/aimtechlogo.jpg" sizes="50px" alt="logo" width="50px" height="35px" />
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="CustomerList" asp-controller="Customers">
+                    <h5 style="color:white;">AIM TECH LOAN</h5>
+                </a>
+            </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="Index" style="color:white">CUSTOMERS</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="EMI" asp-action="EndOfmonths" style="color:white">REPORTS</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="PaidCustomerList" style="color:white">HISTORY</a> </li>
+
+        </ul>
+    </div>
+    <div class="form-inline">
+        @await Html.PartialAsync("_loginPartial")
+    </div>
+</nav>
+<div>
+    <h4>Customer Details</h4>
+
+    <table class="table table-sm mb-0 index-table table-striped table-bordered">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Mobile)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Date)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.LoanAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.LoanAmount)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Months)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Months)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Percent)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Percent)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.LoanBalance)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.LoanBalance)
+            </td>
+            <td align="right"><a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-info">Edit</a></td>
+            <td align="right"><a asp-action="Index" class="btn btn-secondary">Back to List</a></td>
+        </tr>
+    </table>
+</div>

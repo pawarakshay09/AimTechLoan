@@ -1,0 +1,75 @@
+﻿@model aimtechloansystem.Models.EMI
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<nav class="navbar navbar-expand-md fixed-top" style="background-color:#f2131f">
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a asp-action="CustomerList" asp-controller="Customers">
+                    <img src="~/images/aimtechlogo.jpg" sizes="50px" alt="logo" width="50px" height="35px" />
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="CustomerList" asp-controller="Customers">
+                    <h5 style="color:white;">AIM TECH LOAN</h5>
+                </a>
+            </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="Index" style="color:white">CUSTOMERS</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="EMI" asp-action="EndOfmonths" style="color:white">REPORTS</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="PaidCustomerList" style="color:white">HISTORY</a> </li>
+
+        </ul>
+    </div>
+    <div class="form-inline">
+        @await Html.PartialAsync("_loginPartial")
+    </div>
+</nav>
+<h3>Are you sure you want to delete EMI ?</h3>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.EMIAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.EMIAmount)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.EMIDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.EMIDate)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.LateFee)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.LateFee)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.LoanBal)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.LoanBal)
+        </td>
+    </tr>
+
+    <tr>
+        <td> <a asp-controller="Customers" asp-action="Index" class="btn btn-info">Back to List</a></td>
+        <td></td>
+        <td></td>
+        <td>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="ID" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </form>
+        </td>
+    </tr>
+</table>

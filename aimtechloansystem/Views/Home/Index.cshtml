@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-danger mb-3">
+    <div class="container-fluid">
+        <a asp-controller="Customers" asp-action="CustomerList" class="navbar-brand mr-3">AIM TECH LOAN</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" asp-controller="Customers" asp-action="CustomerList">Home</a>
+                <a class="nav-item nav-link" asp-controller="Customers" asp-action="Index">CUSTOMERS</a>
+                <a class="nav-item nav-link" asp-controller="EMI" asp-action="EndOfmonths">REPORTS</a>
+                <a class="nav-item nav-link" asp-controller="Customers" asp-action="PaidCustomerList">HISTORY</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+                @*<a class="nav-item nav-link" asp-controller="Account" asp-action="PaidCustomerList">Admin</a>*@
+                <a class="nav-item nav-link" asp-controller="Account" asp-action="Register">Logout</a>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+

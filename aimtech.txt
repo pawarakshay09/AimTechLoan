@@ -1,0 +1,5 @@
+Server Name:- aimtechloansystem
+Server admin login:-aimtechadmin
+password:-Admin@123
+Location East US
+Database Name :LoanSytem

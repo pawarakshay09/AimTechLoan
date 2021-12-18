@@ -1,0 +1,140 @@
+﻿@model IEnumerable<aimtechloansystem.Models.EMI>
+
+@{
+    ViewData["Title"] = "EndOfmonths";
+}
+<br />
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-danger mb-3">
+    <div class="container-fluid">
+        <a asp-controller="Customers" asp-action="CustomerList" class="navbar-brand mr-3">AIM TECH LOAN</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" asp-controller="Customers" asp-action="CustomerList">Home</a>
+                <a class="nav-item nav-link" asp-controller="Customers" asp-action="Index">CUSTOMERS</a>
+                <a class="nav-item nav-link active" asp-controller="EMI" asp-action="EndOfmonths">REPORTS</a>
+                <a class="nav-item nav-link" asp-controller="Customers" asp-action="PaidCustomerList">HISTORY</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" asp-controller="Account" asp-action="PaidCustomerList">Admin</a>
+                <a class="nav-item nav-link" asp-controller="Account" asp-action="Register">Logout</a>
+            </div>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <table border="0" width="100%">
+        <form asp-controller="EMI" asp-action="EndOfmonths">
+            <tr>
+                <td width="15%">
+                    <h5> End Of months</h5>
+                    </td><td width="35%">
+                    <h3> <a href="javascript:window.print()" id="print" onclick="hide()"><i class="fas fa-print"></i></a></h3>
+                    </td>
+                <td width="20%" align="right">
+                    <select class="form-control" id="Months" name="Months" required style="width:150px">
+                        <option value="">Select Months</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </td>
+                <td width="5%" align="right">
+                    <select class="form-control" id="Year" name="Year" required style="width:150px">
+                        <option value="">Select Year</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+                </td>
+                <td width="5%">
+                     <input type="submit" value="submit" class="btn btn-primary" />
+                </td>
+            </tr>
+        </form>
+    </table>
+    <br />
+    <table class="table table-sm mb-0 index-table table-bordered">
+        <thead style="background-color:#b0dfff">
+            <tr>
+                <th>Customer Name</th>
+                <th>Principal</th>
+                <th>Interest Amount</th>
+                <th>EMI Amount</th>
+                <th>EMI Date</th>
+                <th>Late Fee</th>
+                <th>Loan Balance</th>
+            </tr>
+        </thead>
+        <tbody style="background-color:#73c7ff">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mudal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vyaj)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMIAmount)
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.EMIDate).ToString("dd/MM/yyyy")
+                        @*@Html.DisplayFor(modelItem => item.EMIDate)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LateFee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoanBal)
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+        <tr style="background-color:#b0dfff">
+            <td>Total</td>
+            <td>@TempData["PrincipalTotal"]</td>
+            <td>@TempData["PrincipalTotal"]</td>
+            <td>@TempData["EMITotal"]</td>
+            <td></td>
+            <td>@TempData["LateFee"]</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function hide() {
+        $('#print').hide();
+    }
+</script>

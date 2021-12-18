@@ -1,0 +1,138 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<div>
+        <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+
+            <table border="0" align="center" >
+                <tr>
+                    <td colspan="2" align="center">
+                        <h4>Log in.</h4>
+                    </td>
+                    <td rowspan="6">
+                        <img src="~/images/aimlogo.jpg" width="300px" height="400px" alt="Logo" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="right">
+                        <i class="fas fa-user"></i>
+                        @*<label asp-for="Email" class="custom-label"></label>*@
+                    </td>
+                    <td>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        @*<label asp-for="Password" class="custom-label"></label>*@
+                        <i class="fas fa-lock"></i>
+                    </td>
+                    <td>
+                        <input asp-for="Password" id="psw" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        @*<label asp-for="RememberMe" class="custom-label"> </label>*@
+                    </td>
+                    <td>
+                        <input asp-for="RememberMe" />
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        
+                    </td>
+                    <td align="right">
+                        <button type="submit" class="btn btn-outline-primary">Log in</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
+    </div>
+
+
+@*<div class="container form-border form-control login-shadow row-3 col-3">
+    <section>
+        <h5 class="text-info" align="center">@ViewData["Title"]</h5>
+        <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+            <p class="col-12 login-form-p" align="center">Use your registered account to log in.</p>
+
+            <div class="login-form-group">
+
+                <div class="inner-addon left-addon">
+                    <i class="fas fa-user"></i>
+                    <input asp-for="Email" placeholder="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="login-form-group">
+
+                <div class="inner-addon right-addon">
+                    <i id="ShowPassword" class="fas fa-eye-slash"></i>
+                    <input asp-for="Password" type="password" placeholder="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="login-form-group">
+                <div class="col-3"></div>
+                <div class="align-content-end col-12">
+                    <label asp-for="RememberMe" class="align-content-end">
+                        <input asp-for="RememberMe" class="align-content-end" />
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </label>
+                </div>
+            </div>
+            <div class="login-form-group">
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success" style="width:250px;margin-left:-15px;">Log in</button>
+                </div>
+            </div>
+            <div class="login-form-group row col">
+                <div class="col-3">
+
+                </div>
+                <div class="col-12" align="center">
+                    <a asp-action="ForgotPassword">Forgot your password?</a>
+                </div>
+            </div>
+
+        </form>
+    </section>
+</div>*@
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+<script>
+    $('#ShowPassword').hover(function Show() {
+        //Change the attribute to text
+        $('#psw').attr('type', 'text');
+        $('#ShowPassword').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+    },
+        function () {
+            //Change the attribute back to password
+            $('#psw').attr('type', 'password');
+            $('#ShowPassword').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+        }
+    );
+</script>

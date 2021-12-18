@@ -1,0 +1,130 @@
+﻿@model aimtechloansystem.ViewModel.EMIVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+<nav class="navbar navbar-expand-md fixed-top" style="background-color:#f2131f">
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a asp-action="CustomerList" asp-controller="Customers">
+                    <img src="~/images/aimtechlogo.jpg" sizes="50px" alt="logo" width="50px" height="35px" />
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="CustomerList" asp-controller="Customers">
+                    <h5 style="color:white;">AIM TECH LOAN</h5>
+                </a>
+            </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="Index" style="color:white">CUSTOMERS</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="EMI" asp-action="EndOfmonths" style="color:white">REPORTS</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="PaidCustomerList" style="color:white">HISTORY</a> </li>
+
+        </ul>
+    </div>
+    <div class="form-inline">
+        @await Html.PartialAsync("_loginPartial")
+    </div>
+</nav>
+<h4>@ViewData["CustomerName"] Settel Account</h4>
+<hr />
+
+<form asp-action="Create" method="post">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td style="display:none" colspan="4">
+                <label asp-for="CustomerID" class="control-label"></label>
+                <input asp-for="CustomerID" class="form-control" />
+                <span asp-validation-for="CustomerID" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Mudal" class="control-label"></label>
+            </td>
+            <td>
+                <input asp-for="Mudal" id="Mudal" class="form-control" />
+                <span asp-validation-for="Mudal" class="text-danger"></span>
+            </td>
+            <td><label class="control-label">Percent</label></td>
+            <td>
+                <select id="Percent" onchange="calfee()" class="form-control col-8">
+                    <option value="">Select Percent</option>
+                    <option value="0.0">0.0</option>
+                    <option selected value="1.0">1.0</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2.0">2.0</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3.0">3.0</option>
+                    <option value="5.0">5.0</option>
+                    <option value="10.00">10.00</option>
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Vyaj" class="control-label"></label>
+            </td>
+            <td>
+                <input asp-for="Vyaj" id="Vyaj" class="form-control" />
+                <span asp-validation-for="Vyaj" class="text-danger"></span>
+            </td>
+            <td>
+                <p>Settel Amount</p>
+            </td>
+            <td>
+                <input asp-for="EMIAmount" id="EMIAmount" class="form-control" />
+                <span asp-validation-for="EMIAmount" class="text-danger"></span>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="EMIDate" class="control-label"></label>
+            </td>
+            <td>
+                <input asp-for="EMIDate" class="form-control" />
+                <span asp-validation-for="EMIDate" class="text-danger"></span>
+            </td>
+            <td> <a asp-controller="Customers" asp-action="Index" class="btn btn-outline-dark">Back to List</a></td>
+            <td>
+                <input type="submit" value="Settel" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+
+    function calfee() {
+        alert()
+        var Mudal = $('#Mudal').val();
+
+        alert(Mudal)
+        var Percent = $('#Percent').find('option:selected').val();
+        if (Percent != 0) {
+            var one = (Mudal / 100) ;
+            var fee = one * Percent;
+
+            $('#Vyaj').val(fee);
+            alert(fee);
+            var total = parseInt(Mudal) + parseInt(fee);
+            $('#EMIAmount').val(total);
+        }
+        else {
+            var fee = 0;
+            $('#Vyaj').val(fee);
+            var total = Mudal ;
+            $('#EMIAmount').val(total);
+        }
+    }
+
+</script>

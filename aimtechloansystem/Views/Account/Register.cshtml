@@ -1,0 +1,79 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+
+
+<form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+    <table border="0" align="center">
+        <tr class="col-6">
+            <td colspan="2" align="center">
+                <h4>@ViewData["Title"]</h4>
+            </td>
+            <td rowspan="7">
+                <img src="~/images/aimlogo.jpg" width="300px" height="400px" alt="Logo" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right"> <label asp-for="FirstName" class="custom-label"></label></td>
+            <td>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td align="right"> <label asp-for="LastName" class="custom-label"></label></td>
+            <td>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td align="right"> <label asp-for="PhoneNumber" class="custom-label"></label></td>
+            <td>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td align="right"> <label asp-for="Email" class="custom-label"></label></td>
+            <td>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td align="right"> <label asp-for="Password" class="custom-label"></label></td>
+            <td>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <label asp-for="ConfirmPassword" class="custom-label"></label>
+            </td>
+            <td>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
