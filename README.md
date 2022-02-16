@@ -1,3 +1,5 @@
 # AimTechLoan
 
-![alt text](http://url/to/img.png)
+### It's Loan Managment System
+
+![dashboard Image](/dashboard.png)
