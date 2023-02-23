@@ -19,6 +19,7 @@ namespace aimtechloansystem.Controllers
 
         public EMIController(ApplicationDbContext context)
         {
+            int a=1;
             _context = context;
         }
 
